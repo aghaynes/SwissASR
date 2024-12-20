@@ -98,6 +98,7 @@ report.</p>
 <span>  var_relation <span class="op">=</span> <span class="st">"related"</span>,</span>
 <span>  var_expected <span class="op">=</span> <span class="st">"expected"</span>,</span>
 <span>  var_devdef <span class="op">=</span> <span class="st">"devdef"</span>,</span>
+<span>  var_devdefcouldlead <span class="op">=</span> <span class="st">"devdefcouldlead"</span>,</span>
 <span>  var_devattr <span class="op">=</span> <span class="st">"devattr"</span>,</span>
 <span>  var_devint <span class="op">=</span> <span class="st">"devint"</span>,</span>
 <span>  var_safetymeasure <span class="op">=</span> <span class="st">"safetymeasure"</span>,</span>
@@ -317,6 +318,10 @@ report.</p>
 <dd><p>variable containing whether the SAE is a device deficiency</p></dd>
 
 
+<dt id="arg-var-devdefcouldlead">var_devdefcouldlead<a class="anchor" aria-label="anchor" href="#arg-var-devdefcouldlead"></a></dt>
+<dd><p>variable containing whether the device deficiency could have lead to an SAE</p></dd>
+
+
 <dt id="arg-var-devattr">var_devattr<a class="anchor" aria-label="anchor" href="#arg-var-devattr"></a></dt>
 <dd><p>variable containing whether the SAE is attributable to the device</p></dd>
 
@@ -349,58 +354,6 @@ report.</p>
 <span class="r-in"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"asr"</span>, fileext <span class="op">=</span> <span class="st">".docx"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">asr</span><span class="op">(</span><span class="va">asr_sae</span>, <span class="va">file</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in "run(\"osascript\", script_path)":</span> <span style="color: #BBBB00;">!</span> System command 'osascript' failed</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># # more usual use will require passing more information:</span></span></span>
-<span class="r-in"><span><span class="co"># asr(asr_sae, file,</span></span></span>
-<span class="r-in"><span><span class="co">#     # trial info</span></span></span>
-<span class="r-in"><span><span class="co">#     trial_title = "Example Trial Name",</span></span></span>
-<span class="r-in"><span><span class="co">#     protocol_number = "20221002130",</span></span></span>
-<span class="r-in"><span><span class="co">#     basec_number = "",</span></span></span>
-<span class="r-in"><span><span class="co">#     snctp_number = "202200458",</span></span></span>
-<span class="r-in"><span><span class="co">#     swissmedic_number = "....",</span></span></span>
-<span class="r-in"><span><span class="co">#     ec_name = "Kantonale Ethikskommision Bern",</span></span></span>
-<span class="r-in"><span><span class="co">#     tr_number = "",</span></span></span>
-<span class="r-in"><span><span class="co">#     product_name = "Drug name",</span></span></span>
-<span class="r-in"><span><span class="co">#     international = FALSE,</span></span></span>
-<span class="r-in"><span><span class="co">#     trial_type = "imp",</span></span></span>
-<span class="r-in"><span><span class="co">#     # Sponsor info</span></span></span>
-<span class="r-in"><span><span class="co">#     sponsor_contact = "Sponsor name, Sponsor phone number, Sponsor email",</span></span></span>
-<span class="r-in"><span><span class="co">#     inst_name_address = "Institute name, Institute address",</span></span></span>
-<span class="r-in"><span><span class="co">#     # site info</span></span></span>
-<span class="r-in"><span><span class="co">#     n_centers_t = 20,        # total number</span></span></span>
-<span class="r-in"><span><span class="co">#     n_centers_p = "default", # planned</span></span></span>
-<span class="r-in"><span><span class="co">#     n_centers_c = "default", # closed</span></span></span>
-<span class="r-in"><span><span class="co">#     n_centers_o = "default", # open</span></span></span>
-<span class="r-in"><span><span class="co">#     # participant info</span></span></span>
-<span class="r-in"><span><span class="co">#     n_pat_t = 1000,          # target</span></span></span>
-<span class="r-in"><span><span class="co">#     n_pat_e = 300,           # enrolled</span></span></span>
-<span class="r-in"><span><span class="co">#     n_pat_c = 0,             # complete</span></span></span>
-<span class="r-in"><span><span class="co">#     n_pat_p = 0,             # prematurely terminated</span></span></span>
-<span class="r-in"><span><span class="co">#     # report info</span></span></span>
-<span class="r-in"><span><span class="co">#     report_date = format(Sys.Date(), format = "%d/%m/%Y"),</span></span></span>
-<span class="r-in"><span><span class="co">#     period_from = as.Date("2020-11-02"),</span></span></span>
-<span class="r-in"><span><span class="co">#     period_to = as.Date("2020-11-17"),</span></span></span>
-<span class="r-in"><span><span class="co">#     # variable mapping</span></span></span>
-<span class="r-in"><span><span class="co">#     var_class = "class",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_sae_n = "sae_n", #sae ID</span></span></span>
-<span class="r-in"><span><span class="co">#     var_part_id = "record_id", #participant ID</span></span></span>
-<span class="r-in"><span><span class="co">#     var_age = "age",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_sex ="sex",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_country = "country",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_site = "site",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_sae = "sae",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_date_onset = "sae_date",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_trt = "trt",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_date_trt_start = "sae_trtstart",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_date_trt_stop = "sae_trtstop",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_outcome = "outcome",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_comment = "comment",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_relation = "related",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_expected = "expected",</span></span></span>
-<span class="r-in"><span><span class="co">#     var_safetymeasure = "safetymeasure"</span></span></span>
-<span class="r-in"><span><span class="co">#     )</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
